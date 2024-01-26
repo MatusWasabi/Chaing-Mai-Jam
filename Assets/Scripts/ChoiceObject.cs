@@ -1,19 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ChoiceObject : MonoBehaviour
-{
-    
-    // Start is called before the first frame update
-    void Start()
+{ 
+    [SerializeField] private CombinationBar combinationBar;
+    public void AddToCombinationSlot()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        combinationBar.AddToSlot(gameObject.name);
     }
 }
