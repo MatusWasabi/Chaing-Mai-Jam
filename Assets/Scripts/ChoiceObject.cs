@@ -11,4 +11,5 @@ public class ChoiceObject : MonoBehaviour
     {
         combinationBar.AddToSlot(gameObject.name);
     }
+    
 }

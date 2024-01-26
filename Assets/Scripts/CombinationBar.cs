@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -12,10 +15,26 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private Button firstSlot;
 
     [SerializeField] private Button secondSlot;
-    // Start is called before the first frame update
 
-    [FormerlySerializedAs("slot")] [SerializeField]
-    private string[] slots = new string[2];
+    [SerializeField] private string[] slots = new string[2];
+
+    [SerializeField] private string[] angryCombination0 = new string[2];
+    [SerializeField] private string[] angryCombination1 = new string[2];
+    [SerializeField] private string[] angryCombination2 = new string[2];
+    [SerializeField] private string[] angryCombination3 = new string[2];
+
+    private List<string[]> angryFormular = new List<string[]>();
+
+    [SerializeField] private TextMeshProUGUI moodText;
+
+    private void Start()
+    {
+        angryFormular.Add(angryCombination0);
+        angryFormular.Add(angryCombination1);
+        angryFormular.Add(angryCombination2);
+        angryFormular.Add(angryCombination3);
+        
+    }
 
     public void AddToSlot(string thingToAdd)
     {
@@ -39,6 +58,33 @@ public class CombinationBar : MonoBehaviour
         secondSlot.GetComponentInChildren<TextMeshProUGUI>().text = slots[1];
     }
 
+    public void CheckAngry()
+    {
+        foreach (var combination in angryFormular)
+        {
+            if (Enumerable.SequenceEqual(slots.OrderBy(t => t), combination.OrderBy(t => t)))
+            {
+                Debug.Log("Found things to be angried");
+                ChangeMood();
+                ClearSlot();
+                return;
+            }
+        }
+        ClearSlot();
+    }
 
+    private void ChangeMood()
+    {
+        moodText.text = "Angry!";
+    }
+
+    private void ClearSlot()
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i] = "";
+        } 
+        UpdateSlots();
+    }
 
 }
