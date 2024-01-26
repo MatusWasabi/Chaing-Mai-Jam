@@ -1,11 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemSelector : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> items = new List<GameObject>();
+    [SerializeField] private List<GameObject> items = new();
 
     private int currentItem = 0;
 
