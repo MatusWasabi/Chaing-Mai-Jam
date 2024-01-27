@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sirenix.OdinInspector;
+
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CombinationBar : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class CombinationBar : MonoBehaviour
     private List<string[]> usedAngryFormular = new List<string[]>();
 
     [SerializeField] private TextMeshProUGUI moodText;
+    [SerializeField] private string[] angryDialog;
 
     public delegate void BeAngry();
 
@@ -95,7 +97,8 @@ public class CombinationBar : MonoBehaviour
 
     private void ChangeMood()
     {
-        moodText.text = "Angry!";
+        int index = Random.Range(0, angryDialog.Length);
+        moodText.text = angryDialog[index];
     }
 
     private void ClearSlot()

@@ -834,6 +834,10 @@ MonoBehaviour:
   - 
   - 
   moodText: {fileID: 1231661749}
+  angryDialog:
+  - Oi! I'm pissed
+  - Stop it!
+  - C'mon man
 --- !u!1 &385216363
 GameObject:
   m_ObjectHideFlags: 0
