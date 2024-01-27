@@ -12,6 +12,8 @@ public class TextAnimation : MonoBehaviour
     {
         ResetText();
         Animate();
+
+        CutsceneController.OnCutsceneFinished += HandleCutsceneFinished;
     }
 
     private void ResetText()
@@ -34,6 +36,15 @@ public class TextAnimation : MonoBehaviour
     public void ChangeText(string text)
     {
         this.text.text = text;
-        // Animate(); Temporary disabled
+    }
+
+    private void HandleCutsceneFinished()
+    {
+        Animate();
+    }
+
+    private void OnDestroy()
+    {
+        CutsceneController.OnCutsceneFinished -= HandleCutsceneFinished;
     }
 }

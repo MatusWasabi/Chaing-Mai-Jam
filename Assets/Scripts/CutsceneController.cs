@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System;
 
 public class CutsceneController : MonoBehaviour
 {
     [SerializeField] private GameObject[] objectsToBeDisabled;
     [SerializeField] private GameObject cutscenePanel;
     [SerializeField] private Image tears;
-    [SerializeField] private float scaleFactor = 5f;
+
+    public static event Action OnCutsceneFinished;
 
     private void Start()
     {
@@ -45,7 +47,11 @@ public class CutsceneController : MonoBehaviour
     private void PlayCutscene(int cutsceneNumber = 0)
     {
         tears.DOFade(0f, 0f);
-        tears.DOFade(1f, 5f).OnComplete(() => HideCutscene());
+        _ = tears.DOFade(1f, 5f).OnComplete(() =>
+        {       
+            HideCutscene();
+            OnCutsceneFinished?.Invoke();
+        });
     }
 
     private void OnDestroy()
