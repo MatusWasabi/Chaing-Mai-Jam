@@ -16,6 +16,7 @@ public class ItalianAnimation : MonoBehaviour
     private void Start()
     {
         HideAnimation();
+        PlayAngryHandAnim();
     }
 
     private void PlayAngryHandAnim()
