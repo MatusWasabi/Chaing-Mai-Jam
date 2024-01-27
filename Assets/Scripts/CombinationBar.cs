@@ -21,6 +21,8 @@ public class CombinationBar : MonoBehaviour
     
     public void AddToSlot(string thingToAdd, Sprite newSprite)
     {
+        if (thingToAdd == playerCombination.recipe1 || thingToAdd == playerCombination.recipe2) { return; }
+
         if (playerCombination.recipe1 == "")
         {
             playerCombination.recipe1 = thingToAdd;
@@ -34,12 +36,16 @@ public class CombinationBar : MonoBehaviour
             playerCombination.recipe2 = thingToAdd;
             secondSlot.image.sprite = newSprite;
             UpdateSlots();
-            return;
         }
-        
-        
     }
     
+    private bool LogicCheck(bool condition1, bool condition2)
+    {
+        if (condition1 && condition2) { return true; }
+        else if (!condition1 && condition2) { return false; }
+        else if (condition1 && !condition2) { return true; }
+        else { return true; }
+    }
 
     private void UpdateSlots()
     {
@@ -82,7 +88,7 @@ public class CombinationBar : MonoBehaviour
 
         if (index == 1)
         {
-            playerCombination.recipe2 = "null";
+            playerCombination.recipe2 = "";
             secondSlot.image.sprite = null;
         }
         UpdateSlots();
