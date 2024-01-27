@@ -30,9 +30,9 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moodText;
     [SerializeField] private string[] angryDialog;
 
-    public delegate void BeAngry();
+    //public delegate void BeAngry();
 
-    public static event BeAngry OnBeAngried;
+    public static event Action OnBeAngried;
     
     private void Start()
     {
@@ -71,7 +71,7 @@ public class CombinationBar : MonoBehaviour
             if (CheckIfSameCombination(combination))
             {
                 Debug.Log("Found things to be angried");
-                OnBeAngried();
+                OnBeAngried?.Invoke();
                 ChangeMood();
                 ClearSlot();
                 angryFormular.Remove(combination);

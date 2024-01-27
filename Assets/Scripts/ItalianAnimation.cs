@@ -8,13 +8,29 @@ public class ItalianAnimation : MonoBehaviour
 {
     [SerializeField] private Animator handAnimator;
 
-    private void Start()
+    private void Awake()
     {
         CombinationBar.OnBeAngried += PlayAngryHandAnim;
     }
 
+    private void Start()
+    {
+        HideAnimation();
+    }
+
     private void PlayAngryHandAnim()
     {
+        gameObject.SetActive(true);
         handAnimator.Play("Angry Hand Anim");
+    }
+
+    public void HideAnimation()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        CombinationBar.OnBeAngried -= PlayAngryHandAnim;
     }
 }
