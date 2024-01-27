@@ -30,4 +30,9 @@ public class TextAnimation : MonoBehaviour
             sequence.PrependInterval(timeBetweenLetters);
         }
     }
+
+    public void ChangeText(string text)
+    {
+        this.text.text = text;
+    }
 }
