@@ -8,12 +8,16 @@ struct Combination
     public string recipe1;
     public string recipe2;
     public List<string> wordPool;
+    public string resultMenu;
+    public Sprite resultSprite;
 
-    public Combination(List<string> wordPool, string recipe1 = "", string recipe2 = "" )
+    public Combination(List<string> wordPool, string resultMenu, Sprite resultSprite, string recipe1 = "", string recipe2 = "" )
     {
         this.recipe1 = recipe1;
         this.recipe2 = recipe2;
         this.wordPool = wordPool;
+        this.resultMenu = resultMenu;
+        this.resultSprite = resultSprite;
     }
 
     public string GetWord(int index)

@@ -23,7 +23,7 @@ public class CombinationBar : MonoBehaviour
     
     private List<Combination> usedAngryFormular = new List<Combination>();
 
-    [SerializeField] private TextMeshProUGUI moodText;
+    [SerializeField] private TextAnimation italiainText;
 
     //public delegate void BeAngry();
 
@@ -67,14 +67,14 @@ public class CombinationBar : MonoBehaviour
         {
             if (combination.IsSameRecipe(slots[0], slots[1]))
             {
-                Debug.Log("Found " + combination.ToString());
                 OnBeAngried?.Invoke();
+                italiainText.ChangeText(combination.GetWord(0));
                 ClearAllSlots();
                 angryCombinations.Remove(combination);
+                
                 return;
             }
         }
-
         
         foreach (var combination in usedAngryFormular)
         {
@@ -86,6 +86,7 @@ public class CombinationBar : MonoBehaviour
         }
         ClearAllSlots();
     }
+
     
 
     public void ClearFromSlot(int index)
