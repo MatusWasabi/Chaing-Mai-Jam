@@ -22,8 +22,9 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private string[] angryCombination1 = new string[2];
     [SerializeField] private string[] angryCombination2 = new string[2];
     [SerializeField] private string[] angryCombination3 = new string[2];
-
+    
     private List<string[]> angryFormular = new List<string[]>();
+    private List<string[]> usedAngryFormular = new List<string[]>();
 
     [SerializeField] private TextMeshProUGUI moodText;
 
@@ -31,15 +32,12 @@ public class CombinationBar : MonoBehaviour
 
     public static event BeAngry OnBeAngried;
     
-    
-
     private void Start()
     {
         angryFormular.Add(angryCombination0);
         angryFormular.Add(angryCombination1);
         angryFormular.Add(angryCombination2);
         angryFormular.Add(angryCombination3);
-        
     }
 
     public void AddToSlot(string thingToAdd)
@@ -68,15 +66,30 @@ public class CombinationBar : MonoBehaviour
     {
         foreach (var combination in angryFormular)
         {
-            if (Enumerable.SequenceEqual(slots.OrderBy(t => t), combination.OrderBy(t => t)))
+            if (CheckIfSameCombination(combination))
             {
                 Debug.Log("Found things to be angried");
                 OnBeAngried();
                 ChangeMood();
                 ClearSlot();
+                angryFormular.Remove(combination);
+                usedAngryFormular.Add(combination);
                 return;
             }
         }
+
+        
+        foreach (var combination in usedAngryFormular)
+        {
+            if (CheckIfSameCombination(combination))
+            {
+                Debug.Log("You have used this combination");
+                ClearSlot();
+                return;
+            }
+        }
+        
+        
         ClearSlot();
     }
 
@@ -93,5 +106,11 @@ public class CombinationBar : MonoBehaviour
         } 
         UpdateSlots();
     }
+
+    private bool CheckIfSameCombination(string[] combination)
+    {
+        return Enumerable.SequenceEqual(slots.OrderBy(t => t), combination.OrderBy(t => t));
+    }
+    
 
 }
