@@ -16,7 +16,7 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private Button firstSlot;
 
     [SerializeField] private Button secondSlot;
-
+    
     [SerializeField] private string[] slots = new string[2];
 
     [SerializeField] private List<Combination> angryCombinations = new List<Combination>();
@@ -29,7 +29,7 @@ public class CombinationBar : MonoBehaviour
 
     public static event Action OnBeAngried;
     
-    public void AddToSlot(string thingToAdd)
+    public void AddToSlot(string thingToAdd, Sprite newSprite)
     {
         int index = 0;
         foreach (string slot in slots)
@@ -38,19 +38,22 @@ public class CombinationBar : MonoBehaviour
             {
                 slots[index] = thingToAdd;
                 UpdateSlots();
+                if (index == 0)
+                {
+                    firstSlot.image.sprite = newSprite;
+                }
+
+                if (index == 1)
+                {
+                    secondSlot.image.sprite = newSprite;
+                }
                 return;
             }
-
             index += 1;
         }
     }
+    
 
-    public void ClearFromSlot(int index)
-    {
-        slots[index] = "";
-        Debug.Log("Slot: " + index + " is cleared");
-        UpdateSlots();
-    }
 
     private void UpdateSlots()
     {
@@ -66,7 +69,7 @@ public class CombinationBar : MonoBehaviour
             {
                 Debug.Log("Found " + combination.ToString());
                 OnBeAngried?.Invoke();
-                ClearSlot();
+                ClearAllSlots();
                 angryCombinations.Remove(combination);
                 return;
             }
@@ -77,21 +80,37 @@ public class CombinationBar : MonoBehaviour
         {
             if (combination.IsSameRecipe(slots[0], slots[1]))
             {
-                Debug.Log("You have used this combination");
-                ClearSlot();
+                ClearAllSlots();
                 return;
             }
         }
-        ClearSlot();
+        ClearAllSlots();
     }
     
 
-    private void ClearSlot()
+    public void ClearFromSlot(int index)
+    {
+        slots[index] = "";
+        if (index == 0)
+        {
+            firstSlot.image.sprite = null;
+        }
+
+        if (index == 1)
+        {
+            secondSlot.image.sprite = null;
+        }
+        UpdateSlots();
+    }
+    
+    private void ClearAllSlots()
     {
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i] = "";
         } 
+        firstSlot.image.sprite = null;
+        secondSlot.image.sprite = null;
         UpdateSlots();
     }
     
