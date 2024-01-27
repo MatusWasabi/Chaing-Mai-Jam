@@ -1,84 +1,69 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class CombinationBar : MonoBehaviour
 {
-
     [SerializeField] private Button firstSlot;
-
     [SerializeField] private Button secondSlot;
     
-    [SerializeField] private string[] slots = new string[2];
-
+    [SerializeField] private Combination playerCombination = new Combination();
     [SerializeField] private List<Combination> angryCombinations = new List<Combination>();
-    
     private List<Combination> usedAngryFormular = new List<Combination>();
 
-    [SerializeField] private TextAnimation italiainText;
-
-    //public delegate void BeAngry();
-
+    [SerializeField] private TextAnimation DialogText;
+    
     public static event Action OnBeAngried;
     
     public void AddToSlot(string thingToAdd, Sprite newSprite)
     {
-        int index = 0;
-        foreach (string slot in slots)
+        if (playerCombination.recipe1 == "")
         {
-            if (slot == "")
-            {
-                slots[index] = thingToAdd;
-                UpdateSlots();
-                if (index == 0)
-                {
-                    firstSlot.image.sprite = newSprite;
-                }
-
-                if (index == 1)
-                {
-                    secondSlot.image.sprite = newSprite;
-                }
-                return;
-            }
-            index += 1;
+            playerCombination.recipe1 = thingToAdd;
+            firstSlot.image.sprite = newSprite;
+            UpdateSlots();
+            return;
         }
+
+        if (playerCombination.recipe2 == "")
+        {
+            playerCombination.recipe2 = thingToAdd;
+            secondSlot.image.sprite = newSprite;
+            UpdateSlots();
+            return;
+        }
+        
+        
     }
     
 
-
     private void UpdateSlots()
     {
-        firstSlot.GetComponentInChildren<TextMeshProUGUI>().text = slots[0];
-        secondSlot.GetComponentInChildren<TextMeshProUGUI>().text = slots[1];
+        firstSlot.GetComponentInChildren<TextMeshProUGUI>().text = playerCombination.recipe1;
+        secondSlot.GetComponentInChildren<TextMeshProUGUI>().text = playerCombination.recipe2;
     }
 
     public void CheckAngry()
     {
         foreach (var combination in angryCombinations)
         {
-            if (combination.IsSameRecipe(slots[0], slots[1]))
+            if (combination.IsSameRecipe(playerCombination.recipe1, playerCombination.recipe2))
             {
                 OnBeAngried?.Invoke();
-                italiainText.ChangeText(combination.GetWord(0));
+                DialogText.ChangeText(combination.GetWord(0));
                 ClearAllSlots();
                 angryCombinations.Remove(combination);
-                
                 return;
             }
         }
         
         foreach (var combination in usedAngryFormular)
         {
-            if (combination.IsSameRecipe(slots[0], slots[1]))
+            if (combination.IsSameRecipe(playerCombination.recipe1, playerCombination.recipe2))
             {
                 ClearAllSlots();
                 return;
@@ -87,18 +72,17 @@ public class CombinationBar : MonoBehaviour
         ClearAllSlots();
     }
 
-    
-
     public void ClearFromSlot(int index)
     {
-        slots[index] = "";
         if (index == 0)
         {
+            playerCombination.recipe1 = "";
             firstSlot.image.sprite = null;
         }
 
         if (index == 1)
         {
+            playerCombination.recipe2 = "null";
             secondSlot.image.sprite = null;
         }
         UpdateSlots();
@@ -106,10 +90,9 @@ public class CombinationBar : MonoBehaviour
     
     private void ClearAllSlots()
     {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            slots[i] = "";
-        } 
+        playerCombination.recipe1 = "";
+        playerCombination.recipe2 = "";
+        
         firstSlot.image.sprite = null;
         secondSlot.image.sprite = null;
         UpdateSlots();
