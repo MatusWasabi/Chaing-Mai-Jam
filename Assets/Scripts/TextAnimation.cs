@@ -34,6 +34,6 @@ public class TextAnimation : MonoBehaviour
     public void ChangeText(string text)
     {
         this.text.text = text;
-        Animate();
+        // Animate(); Temporary disabled
     }
 }

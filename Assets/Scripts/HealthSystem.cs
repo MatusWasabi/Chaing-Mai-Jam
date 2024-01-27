@@ -23,4 +23,9 @@ public class HealthSystem : MonoBehaviour
         healthText.text = currentHealth.ToString();
         Debug.Log(currentHealth);
     }
+
+    private void OnDestroy()
+    {
+        CombinationBar.OnBeAngried -= ReduceHealth;
+    }
 }
