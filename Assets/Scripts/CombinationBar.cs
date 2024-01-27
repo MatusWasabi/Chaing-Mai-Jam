@@ -51,11 +51,18 @@ public class CombinationBar : MonoBehaviour
             {
                 slots[index] = thingToAdd;
                 UpdateSlots();
-                return;     
+                return;
             }
+
             index += 1;
         }
-        
+    }
+
+    public void ClearFromSlot(int index)
+    {
+        slots[index] = "";
+        Debug.Log("Slot: " + index + " is cleared");
+        UpdateSlots();
     }
 
     private void UpdateSlots()
