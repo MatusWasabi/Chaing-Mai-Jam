@@ -26,17 +26,8 @@ public class TextAnimation : MonoBehaviour
         for (int i = animator.textInfo.characterCount - 1; i >= 0; i--)
         {
             if (!animator.textInfo.characterInfo[i].isVisible) continue;
-            //Vector3 currCharOffset = animator.GetCharOffset(i);
             sequence.Join(animator.DOFadeChar(i, 1f, letterAnimationTime));
             sequence.PrependInterval(timeBetweenLetters);
         }
-        /*for (int i = 0; i < animator.textInfo.characterCount; ++i)
-        {
-            if (!animator.textInfo.characterInfo[i].isVisible) continue;
-            //Vector3 currCharOffset = animator.GetCharOffset(i);
-            sequence.Join(animator.DOFadeChar(i, 1f, 0.4f));
-            sequence.PrependInterval(0.05f);
-            //sequence.Join(animator.DOOffsetChar(i, currCharOffset + new Vector3(0, 30, 0), 1));
-        }*/
     }
 }
