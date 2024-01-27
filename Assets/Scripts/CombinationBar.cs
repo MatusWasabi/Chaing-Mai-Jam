@@ -38,14 +38,6 @@ public class CombinationBar : MonoBehaviour
             UpdateSlots();
         }
     }
-    
-    private bool LogicCheck(bool condition1, bool condition2)
-    {
-        if (condition1 && condition2) { return true; }
-        else if (!condition1 && condition2) { return false; }
-        else if (condition1 && !condition2) { return true; }
-        else { return true; }
-    }
 
     private void UpdateSlots()
     {
