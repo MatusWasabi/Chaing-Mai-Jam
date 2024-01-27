@@ -27,6 +27,12 @@ public class CombinationBar : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI moodText;
 
+    public delegate void BeAngry();
+
+    public static event BeAngry OnBeAngried;
+    
+    
+
     private void Start()
     {
         angryFormular.Add(angryCombination0);
@@ -65,6 +71,7 @@ public class CombinationBar : MonoBehaviour
             if (Enumerable.SequenceEqual(slots.OrderBy(t => t), combination.OrderBy(t => t)))
             {
                 Debug.Log("Found things to be angried");
+                OnBeAngried();
                 ChangeMood();
                 ClearSlot();
                 return;

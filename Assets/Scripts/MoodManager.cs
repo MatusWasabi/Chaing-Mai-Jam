@@ -4,13 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoodReset : MonoBehaviour
+public class MoodManager : MonoBehaviour
 
 {
     [SerializeField] private TextMeshProUGUI moodText;
+    
 
     public void ResetMood()
     {
         moodText.text = "Happy";
     }
+    
+    
+    
 }
