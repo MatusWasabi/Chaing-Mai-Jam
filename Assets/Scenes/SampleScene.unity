@@ -831,8 +831,10 @@ MonoBehaviour:
   - Spaghetti
   - KetchUp
   angryCombination3:
-  - 
-  - 
+    recipe1: Pizza
+    recipe2: Spaghetti
+    WordPool:
+    - Disturbing!
   moodText: {fileID: 1231661749}
   angryDialog:
   - Oi! I'm pissed

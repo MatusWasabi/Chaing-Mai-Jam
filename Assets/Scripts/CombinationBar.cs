@@ -19,29 +19,16 @@ public class CombinationBar : MonoBehaviour
 
     [SerializeField] private string[] slots = new string[2];
 
-    [SerializeField] private string[] angryCombination0 = new string[2];
-    [SerializeField] private string[] angryCombination1 = new string[2];
-    [SerializeField] private string[] angryCombination2 = new string[2];
-    [SerializeField] private string[] angryCombination3 = new string[2];
+    [SerializeField] private List<Combination> angryCombinations = new List<Combination>();
     
-    private List<string[]> angryFormular = new List<string[]>();
-    private List<string[]> usedAngryFormular = new List<string[]>();
+    private List<Combination> usedAngryFormular = new List<Combination>();
 
     [SerializeField] private TextMeshProUGUI moodText;
-    [SerializeField] private string[] angryDialog;
 
     //public delegate void BeAngry();
 
     public static event Action OnBeAngried;
     
-    private void Start()
-    {
-        angryFormular.Add(angryCombination0);
-        angryFormular.Add(angryCombination1);
-        angryFormular.Add(angryCombination2);
-        angryFormular.Add(angryCombination3);
-    }
-
     public void AddToSlot(string thingToAdd)
     {
         int index = 0;
@@ -73,16 +60,14 @@ public class CombinationBar : MonoBehaviour
 
     public void CheckAngry()
     {
-        foreach (var combination in angryFormular)
+        foreach (var combination in angryCombinations)
         {
-            if (CheckIfSameCombination(combination))
+            if (combination.IsSameRecipe(slots[0], slots[1]))
             {
-                Debug.Log("Found things to be angried");
+                Debug.Log("Found " + combination.ToString());
                 OnBeAngried?.Invoke();
-                ChangeMood();
                 ClearSlot();
-                angryFormular.Remove(combination);
-                usedAngryFormular.Add(combination);
+                angryCombinations.Remove(combination);
                 return;
             }
         }
@@ -90,23 +75,16 @@ public class CombinationBar : MonoBehaviour
         
         foreach (var combination in usedAngryFormular)
         {
-            if (CheckIfSameCombination(combination))
+            if (combination.IsSameRecipe(slots[0], slots[1]))
             {
                 Debug.Log("You have used this combination");
                 ClearSlot();
                 return;
             }
         }
-        
-        
         ClearSlot();
     }
-
-    private void ChangeMood()
-    {
-        int index = Random.Range(0, angryDialog.Length);
-        moodText.text = angryDialog[index];
-    }
+    
 
     private void ClearSlot()
     {
@@ -116,11 +94,7 @@ public class CombinationBar : MonoBehaviour
         } 
         UpdateSlots();
     }
-
-    private bool CheckIfSameCombination(string[] combination)
-    {
-        return Enumerable.SequenceEqual(slots.OrderBy(t => t), combination.OrderBy(t => t));
-    }
+    
     
 
 }
