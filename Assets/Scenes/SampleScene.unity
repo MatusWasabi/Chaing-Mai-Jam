@@ -998,6 +998,12 @@ MonoBehaviour:
   nothingHappenWord:
   - Will you take anything else?
   - Good choice, baby.
+  - 'You are the best, innamorato. '
+  - I love it!
+  - Mwah
+  - 'Approved! '
+  - '*Kiss Kiss*'
+  - '*Wink Wink*'
 --- !u!1 &300557747
 GameObject:
   m_ObjectHideFlags: 0
