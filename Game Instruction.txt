@@ -5,3 +5,8 @@ So you have to tell him in distasteful some way.
 
 How to play
 Point and click interactive. 
+
+Credits:
+Wasabi Boy - Gameplay Programmer
+KillerScrubbie - User interface, Animation, Audio Programmer
+Bookito - Designer, Artist
