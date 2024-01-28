@@ -10,6 +10,9 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private int currentHealth;
     [SerializeField] private TextMeshProUGUI healthText;
 
+    [SerializeField] private GameObject endScreen;
+    
+    
     private void Start()
     {
         CombinationBar.OnBeAngried += ReduceHealth;
@@ -20,12 +23,20 @@ public class HealthSystem : MonoBehaviour
     private void ReduceHealth()
     {
         currentHealth--;
-        healthText.text = currentHealth.ToString();
-        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(EndGame());
+        }
     }
 
     private void OnDestroy()
     {
         CombinationBar.OnBeAngried -= ReduceHealth;
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(6f);
+        endScreen.SetActive(true);
     }
 }
