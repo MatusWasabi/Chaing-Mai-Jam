@@ -54,7 +54,7 @@ public class CombinationBar : MonoBehaviour
         {
             if (combination.IsSameRecipe(playerCombination.recipe1, playerCombination.recipe2))
             {
-                OnMenuCreated?.Invoke(playerCombination.resultSprite);
+                OnMenuCreated?.Invoke(combination.resultSprite);
                 OnBeAngried?.Invoke();
                 DialogText.ChangeText(combination.GetWord(0));
                 ClearAllSlots();
