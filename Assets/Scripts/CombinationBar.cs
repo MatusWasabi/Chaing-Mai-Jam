@@ -19,6 +19,7 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private TextAnimation DialogText;
     
     public static event Action OnBeAngried;
+    public static event Action<Sprite> OnMenuCreated;
 
     [SerializeField] private string[] nothingHappenWord;
     public void AddToSlot(string thingToAdd, Sprite newSprite)
@@ -53,6 +54,7 @@ public class CombinationBar : MonoBehaviour
         {
             if (combination.IsSameRecipe(playerCombination.recipe1, playerCombination.recipe2))
             {
+                OnMenuCreated?.Invoke(playerCombination.resultSprite);
                 OnBeAngried?.Invoke();
                 DialogText.ChangeText(combination.GetWord(0));
                 ClearAllSlots();
