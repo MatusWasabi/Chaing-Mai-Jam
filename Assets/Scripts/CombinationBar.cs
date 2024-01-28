@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class CombinationBar : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class CombinationBar : MonoBehaviour
     [SerializeField] private TextAnimation DialogText;
     
     public static event Action OnBeAngried;
-    
+
+    [SerializeField] private string[] nothingHappenWord;
     public void AddToSlot(string thingToAdd, Sprite newSprite)
     {
         if (thingToAdd == playerCombination.recipe1 || thingToAdd == playerCombination.recipe2) { return; }
@@ -68,7 +70,8 @@ public class CombinationBar : MonoBehaviour
             }
         }
 
-        DialogText.ChangeText("I don't think they can provide you that, Tesoro.");
+        string dialog = nothingHappenWord[Random.Range(0, nothingHappenWord.Length)];
+        DialogText.ChangeText(dialog);
         DialogText.Animate();
         ClearAllSlots();
     }
