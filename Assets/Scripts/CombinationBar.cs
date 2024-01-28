@@ -67,6 +67,9 @@ public class CombinationBar : MonoBehaviour
                 return;
             }
         }
+
+        DialogText.ChangeText("I don't think they can provide you that, Tesoro.");
+        DialogText.Animate();
         ClearAllSlots();
     }
 

@@ -21,7 +21,7 @@ public class TextAnimation : MonoBehaviour
         text.alpha = 0f;
     }
 
-    private void Animate()
+    public void Animate()
     {
         DOTweenTMPAnimator animator = new(text);
         Sequence sequence = DOTween.Sequence();
