@@ -920,6 +920,9 @@ MonoBehaviour:
     resultMenu: Iced Beer
     resultSprite: {fileID: 21300000, guid: e64137ca0222baf4d8ae90aad5d0d2ac, type: 3}
   DialogText: {fileID: 1373991968}
+  nothingHappenWord:
+  - Will you take anything else?
+  - Good choice, baby.
 --- !u!1 &327132341
 GameObject:
   m_ObjectHideFlags: 0
