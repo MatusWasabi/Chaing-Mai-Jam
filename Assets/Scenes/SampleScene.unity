@@ -906,13 +906,13 @@ MonoBehaviour:
     wordPool:
     - Dio Santo! Did you lose your mind? That is not Bolognese!
     resultMenu: Spaghetti - Ketchup
-    resultSprite: {fileID: 21300000, guid: c8ab5c5d291a2904fabe966b977ed6bf, type: 3}
+    resultSprite: {fileID: 21300000, guid: 585bcc1dc658e65429d98c82a22370da, type: 3}
   - recipe1: Pizza
     recipe2: Pineapple
     wordPool:
     - Che due palle! You just made 60 million enemies with your blasphemous pizza.
     resultMenu: Pizza - Pineapple
-    resultSprite: {fileID: 21300000, guid: c8ab5c5d291a2904fabe966b977ed6bf, type: 3}
+    resultSprite: {fileID: 21300000, guid: 64552095d537a564c9ca606c581f8070, type: 3}
   - recipe1: Beer
     recipe2: Ice
     wordPool:
@@ -3318,10 +3318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'First
-
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4075,10 +4072,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Second
-
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5502,9 +5496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enter
-
-'
+  m_text: Order
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
