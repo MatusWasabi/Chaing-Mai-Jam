@@ -17,6 +17,7 @@ public class CombinationBar : MonoBehaviour
     private List<Combination> usedAngryFormular = new List<Combination>();
 
     [SerializeField] private TextAnimation DialogText;
+    [SerializeField] private Sprite defaultSprite;
     
     public static event Action OnBeAngried;
     public static event Action<Sprite> OnMenuCreated;
@@ -83,13 +84,13 @@ public class CombinationBar : MonoBehaviour
         if (index == 0)
         {
             playerCombination.recipe1 = "";
-            firstSlot.image.sprite = null;
+            firstSlot.image.sprite = defaultSprite;
         }
 
         if (index == 1)
         {
             playerCombination.recipe2 = "";
-            secondSlot.image.sprite = null;
+            secondSlot.image.sprite = defaultSprite;
         }
         UpdateSlots();
     }
@@ -99,8 +100,8 @@ public class CombinationBar : MonoBehaviour
         playerCombination.recipe1 = "";
         playerCombination.recipe2 = "";
         
-        firstSlot.image.sprite = null;
-        secondSlot.image.sprite = null;
+        firstSlot.image.sprite = defaultSprite;
+        secondSlot.image.sprite = defaultSprite;
         UpdateSlots();
     }
     
